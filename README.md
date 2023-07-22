@@ -6,7 +6,7 @@ The React wrapper for [Apache ECharts](https://github.com/apache/incubator-echar
 ### Attributes
 
 * **option** - the echarts option config, can see [https://echarts.apache.org/option.html#title](https://echarts.apache.org/option.html#title).
-* **setOptionOpts** - setOption options
+* **opts** - setOption options
 * **theme** - theme to be applied. [https://echarts.apache.org/en/api.html#echarts.init](https://echarts.apache.org/en/api.html#echarts.init).
 * **onInit** - when the chart is init, will callback the function with the `echartsInstance` as it's paramter.
 * **initOpts** - init options

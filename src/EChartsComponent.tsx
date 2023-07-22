@@ -6,7 +6,7 @@ export type { EChartsOption, SetOptionOpts };
 
 export type EChartsComponentProps = Partial<EChartsWrapperProps> & {
   option: EChartsOption;
-  setOptionOpts?: SetOptionOpts;
+  opts?: SetOptionOpts;
 };
 
 export const EChartsComponent = memo(
@@ -14,12 +14,12 @@ export const EChartsComponent = memo(
     props: EChartsComponentProps,
     ref: React.ForwardedRef<HTMLElement | null>
   ) {
-    const { option, setOptionOpts, onInit, ...wrapperProps } = props;
+    const { option, opts, onInit, ...wrapperProps } = props;
     const [instance, setInstance] = useState<ECharts>();
 
     useEffect(() => {
       if (instance) {
-        instance.setOption(option, setOptionOpts);
+        instance.setOption(option, opts);
       }
     }, [instance, option]);
 
