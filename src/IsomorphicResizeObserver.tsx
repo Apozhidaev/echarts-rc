@@ -1,4 +1,4 @@
-class ResizeObserverPolyfill {
+class ResizeObservePolyfill {
   constructor(
     private callback: (entries: { contentRect: { width: number; height: number } }[]) => void
   ) {}
@@ -10,5 +10,5 @@ class ResizeObserverPolyfill {
   disconnect() {}
 }
 
-export const MeasureObserver =
-  typeof ResizeObserver !== "undefined" ? ResizeObserver : ResizeObserverPolyfill;
+export const IsomorphicResizeObserver =
+  typeof ResizeObserver !== "undefined" ? ResizeObserver : ResizeObservePolyfill;

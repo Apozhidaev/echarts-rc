@@ -10,7 +10,7 @@ import {
   useEffect,
   useMemo,
 } from "react";
-import { MeasureObserver } from "./MeasureObserver";
+import { IsomorphicResizeObserver } from "./IsomorphicResizeObserver";
 
 type InitParams = Parameters<typeof echarts.init>;
 
@@ -39,7 +39,7 @@ export const EChartsWrapper = memo(
 
     const observer = useMemo(
       () =>
-        new MeasureObserver((entries) => {
+        new IsomorphicResizeObserver((entries) => {
           if (entries[0]) {
             const { width, height } = entries[0].contentRect;
             setHeight(height);
