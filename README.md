@@ -2,15 +2,23 @@
 
 The React wrapper for [Apache ECharts](https://github.com/apache/incubator-echarts).
 
+### Purpose
+
+Why do we have one more wrapper for echarts?
+
+1. Use of the [Resize Observer API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) to auto resize.
+2. Full access to all echarts features.
+3. Use of modern react.
+
 
 ### Attributes
 
-* **option** - the echarts option config, can see [https://echarts.apache.org/option.html#title](https://echarts.apache.org/option.html#title).
-* **opts** - setOption options
+* **option** - the echarts option config, can see [https://echarts.apache.org/option.html](https://echarts.apache.org/option.html).
+* **opts** - merge option setup (`opts` parameter of `setOption` function) [https://echarts.apache.org/en/api.html#echartsInstance.setOption](https://echarts.apache.org/en/api.html#echartsInstance.setOption)
 * **theme** - theme to be applied. [https://echarts.apache.org/en/api.html#echarts.init](https://echarts.apache.org/en/api.html#echarts.init).
 * **onInit** - when the chart is init, will callback the function with the `echartsInstance` as it's paramter.
-* **initOpts** - init options
-* **...htmlProps[]** - html props
+* **initOpts** - init options (`opts` parameter of `init` function) [https://echarts.apache.org/en/api.html#echarts.init](https://echarts.apache.org/en/api.html#echarts.init)
+* **...htmlProps[]** - html attributes (className, styles, ...)
 
 
 ### How to Use
@@ -20,7 +28,7 @@ Step 1.
 npm i echarts-rc
 
 # `echarts` is the peerDependence of `echarts-rc`, you can install echarts with your own version.
-$ npm i echarts
+npm i echarts
 ```
 
 Step 2.
@@ -29,7 +37,7 @@ import { useMemo } from "react";
 import EChartsComponent, { EChartsOption } from "echarts-rc";
 
 function App() {
-  const options: EChartsOption = useMemo(
+  const option: EChartsOption = useMemo(
     () => ({
       xAxis: {
         type: "category",
@@ -50,7 +58,7 @@ function App() {
 
   return (
     <EChartsComponent
-      option={options}
+      option={option}
       style={{ height: 500 }}
       onInit={(instance) => {
         instance.on("click", (e) => {
