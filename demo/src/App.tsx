@@ -25,6 +25,7 @@ function App() {
   return (
     <EChartsComponent
       option={options}
+      opts={{ notMerge: true }}
       style={{ height: 500 }}
       onInit={(instance) => {
         instance.on("click", (e) => {

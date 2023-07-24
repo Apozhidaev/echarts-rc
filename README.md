@@ -37,7 +37,7 @@ import { useMemo } from "react";
 import EChartsComponent, { EChartsOption } from "echarts-rc";
 
 function App() {
-  const option: EChartsOption = useMemo(
+  const options: EChartsOption = useMemo(
     () => ({
       xAxis: {
         type: "category",
@@ -58,7 +58,8 @@ function App() {
 
   return (
     <EChartsComponent
-      option={option}
+      option={options}
+      opts={{ notMerge: true }}
       style={{ height: 500 }}
       onInit={(instance) => {
         instance.on("click", (e) => {
