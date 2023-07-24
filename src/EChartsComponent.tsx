@@ -12,15 +12,16 @@ import {
 } from "react";
 import { IsomorphicResizeObserver } from "./IsomorphicResizeObserver";
 
-type InitParams = Parameters<typeof echarts.init>;
+export type Theme = Parameters<typeof echarts.init>[1];
+export type InitOpts = Parameters<typeof echarts.init>[2];
 
 export type { ECharts, EChartsOption, SetOptionOpts };
 
 export type EChartsComponentProps = HTMLAttributes<HTMLElement> & {
   option?: EChartsOption;
   opts?: SetOptionOpts;
-  theme?: InitParams[1];
-  initOpts?: InitParams[2];
+  theme?: Theme;
+  initOpts?: InitOpts;
   onInit?: (instance: ECharts) => void;
 };
 
