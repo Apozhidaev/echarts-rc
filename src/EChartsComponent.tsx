@@ -14,6 +14,12 @@ import { IsomorphicResizeObserver } from "./IsomorphicResizeObserver";
 
 export type Theme = Parameters<typeof echarts.init>[1];
 export type InitOpts = Parameters<typeof echarts.init>[2];
+export type InitHandler = (instance: ECharts) => void;
+export type UpdateHandler = (
+  instance: ECharts,
+  option: EChartsOption,
+  opts?: SetOptionOpts
+) => void;
 
 export type { ECharts, EChartsOption, SetOptionOpts };
 
@@ -22,7 +28,8 @@ export type EChartsComponentProps = HTMLAttributes<HTMLElement> & {
   opts?: SetOptionOpts;
   theme?: Theme;
   initOpts?: InitOpts;
-  onInit?: (instance: ECharts) => void;
+  onInit?: InitHandler;
+  onUpdate?: UpdateHandler;
 };
 
 export const EChartsComponent = memo(
@@ -30,7 +37,7 @@ export const EChartsComponent = memo(
     props: EChartsComponentProps,
     ref: React.Ref<HTMLElement | null>
   ) {
-    const { option, opts, theme, initOpts, onInit, ...htmlProps } = props;
+    const { option, opts, theme, initOpts, onInit, onUpdate, ...htmlProps } = props;
 
     const containerRef = useRef<HTMLDivElement | null>(null);
     const instanceRef = useRef<ECharts | null>(null);
@@ -79,9 +86,15 @@ export const EChartsComponent = memo(
       });
     }, [width, height]);
 
+    const updateRef = useRef<UpdateHandler | undefined>();
+    useEffect(() => {
+      updateRef.current = onUpdate;
+    }, [onUpdate]);
+
     useEffect(() => {
       if (instance && option) {
         instance.setOption(option, opts);
+        updateRef.current?.(instance, option, opts);
       }
     }, [instance, option]);
 

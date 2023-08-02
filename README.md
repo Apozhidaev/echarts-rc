@@ -4,7 +4,7 @@ The React wrapper for [Apache ECharts](https://github.com/apache/incubator-echar
 
 ### Purpose
 
-Why do we have one more wrapper for echarts?
+Why we have one more wrapper for echarts?
 
 1. Use of the [Resize Observer API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) to auto resize.
 2. Full access to all echarts features.
@@ -15,6 +15,7 @@ Why do we have one more wrapper for echarts?
 
 * **option** - the echarts option config, can see [https://echarts.apache.org/option.html](https://echarts.apache.org/option.html).
 * **opts** - merge option setup (`opts` parameter of `setOption` function) [https://echarts.apache.org/en/api.html#echartsInstance.setOption](https://echarts.apache.org/en/api.html#echartsInstance.setOption)
+* **onUpdate** - calls after `setOption`.
 * **theme** - theme to be applied. [https://echarts.apache.org/en/api.html#echarts.init](https://echarts.apache.org/en/api.html#echarts.init).
 * **onInit** - when the chart is init, will callback the function with the `echartsInstance` as it's paramter.
 * **initOpts** - init options (`opts` parameter of `init` function) [https://echarts.apache.org/en/api.html#echarts.init](https://echarts.apache.org/en/api.html#echarts.init)
