@@ -15,10 +15,11 @@ Why we have one more wrapper for echarts?
 
 * **option** - the echarts option config, can see [https://echarts.apache.org/option.html](https://echarts.apache.org/option.html).
 * **opts** - merge option setup (`opts` parameter of `setOption` function) [https://echarts.apache.org/en/api.html#echartsInstance.setOption](https://echarts.apache.org/en/api.html#echartsInstance.setOption)
-* **onUpdate** - calls after `setOption`.
 * **theme** - theme to be applied. [https://echarts.apache.org/en/api.html#echarts.init](https://echarts.apache.org/en/api.html#echarts.init).
-* **onInit** - when the chart is init, will callback the function with the `echartsInstance` as it's paramter.
 * **initOpts** - init options (`opts` parameter of `init` function) [https://echarts.apache.org/en/api.html#echarts.init](https://echarts.apache.org/en/api.html#echarts.init)
+* **onInit** - when the chart is init, will callback the function with the `echartsInstance` as it's paramter.
+* **onUpdate** - will callback after `setOption`.
+* **onResize** - will callback after `resize`.
 * **...htmlProps[]** - html attributes (className, styles, ...)
 
 

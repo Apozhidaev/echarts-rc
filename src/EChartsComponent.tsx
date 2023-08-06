@@ -20,6 +20,7 @@ export type UpdateHandler = (
   option: EChartsOption,
   opts?: SetOptionOpts
 ) => void;
+export type ResizeHandler = (instance: ECharts, width: number, height: number) => void;
 
 export type { ECharts, EChartsOption, SetOptionOpts };
 
@@ -30,6 +31,7 @@ export type EChartsComponentProps = HTMLAttributes<HTMLElement> & {
   initOpts?: InitOpts;
   onInit?: InitHandler;
   onUpdate?: UpdateHandler;
+  onResize?: ResizeHandler;
 };
 
 export const EChartsComponent = memo(
@@ -37,7 +39,7 @@ export const EChartsComponent = memo(
     props: EChartsComponentProps,
     ref: React.Ref<HTMLElement | null>
   ) {
-    const { option, opts, theme, initOpts, onInit, onUpdate, ...htmlProps } = props;
+    const { option, opts, theme, initOpts, onInit, onUpdate, onResize, ...htmlProps } = props;
 
     const containerRef = useRef<HTMLDivElement | null>(null);
     const instanceRef = useRef<ECharts | null>(null);
@@ -79,11 +81,19 @@ export const EChartsComponent = memo(
       };
     }, []);
 
+    const resizeRef = useRef<ResizeHandler | undefined>();
     useEffect(() => {
-      instanceRef.current?.resize({
-        width,
-        height,
-      });
+      resizeRef.current = onResize;
+    }, [onResize]);
+
+    useEffect(() => {
+      if (instanceRef.current) {
+        instanceRef.current.resize({
+          width,
+          height,
+        });
+        resizeRef.current?.(instanceRef.current, width, height);
+      }
     }, [width, height]);
 
     const updateRef = useRef<UpdateHandler | undefined>();
