@@ -24,7 +24,7 @@ export type ResizeHandler = (instance: ECharts, width: number, height: number) =
 
 export type { ECharts, EChartsOption, SetOptionOpts };
 
-export type EChartsComponentProps = HTMLAttributes<HTMLElement> & {
+export type EChartsComponentProps = Omit<HTMLAttributes<HTMLElement>, "onResize"> & {
   option?: EChartsOption;
   opts?: SetOptionOpts;
   theme?: Theme;
