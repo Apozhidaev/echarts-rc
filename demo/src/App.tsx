@@ -6,8 +6,9 @@ function App() {
   const options: EChartsOption = useMemo(
     () => ({
       xAxis: {
+        id: "id",
         type: "category",
-        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        data: ["Mon Long Name Long Name Long Name", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       },
       yAxis: {
         type: "value",
@@ -30,6 +31,18 @@ function App() {
       onInit={(instance) => {
         instance.on("click", (e) => {
           console.log(e);
+        });
+      }}
+      onResize={(i, w) => {
+        i.setOption({
+          xAxis: {
+            id: "id",
+            axisLabel: {
+              overflow: "truncate",
+              width: w / 7,
+              interval: 0,
+            },
+          },
         });
       }}
     />
